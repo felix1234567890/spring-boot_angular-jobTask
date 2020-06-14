@@ -60,7 +60,12 @@ export class CreateEmployeeComponent implements OnInit {
     if (this.createEmployeeForm.invalid) {
       return;
     }
-    console.log(this.createEmployeeForm.value);
+    if (typeof this.createEmployeeForm.value.role === 'boolean') {
+      this.createEmployeeForm.value.role = this.createEmployeeForm.value.role
+        ? 'ADMIN'
+        : 'EMPLOYEE';
+    }
+
     this.loading = true;
     if (this.id) {
       this.http

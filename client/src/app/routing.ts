@@ -20,6 +20,7 @@ const routes: Routes = [
   {
     path: 'createEmployee',
     component: CreateEmployeeComponent,
+    canActivate: [RouteGuardService],
   },
   {
     path: 'updateEmployee/:id',

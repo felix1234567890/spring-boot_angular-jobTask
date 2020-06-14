@@ -17,7 +17,10 @@ export class RouteGuardService implements CanActivate {
       } else {
         return false;
       }
+    } else if (route.routeConfig.path === 'createEmployee') {
+      return true;
+    } else {
+      return false;
     }
-    return false;
   }
 }
