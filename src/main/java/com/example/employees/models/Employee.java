@@ -39,7 +39,7 @@ public class Employee {
     @Column(length = 10, columnDefinition = "varchar(10) default 'EMPLOYEE'")
     private RoleEnum role = RoleEnum.EMPLOYEE;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Timesheet> timesheets;
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private EmployeeImage employeeImage;

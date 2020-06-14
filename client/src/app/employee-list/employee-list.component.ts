@@ -38,7 +38,18 @@ export class EmployeeListComponent implements OnInit {
   deleteEmployee(id: number) {
     if (localStorage.getItem('user')) {
       const user = JSON.parse(localStorage.getItem('user'));
-      if (user.id === id) {
+      if (user.role === 'ADMIN') {
+        if (user.id === id) {
+          localStorage.removeItem('user');
+        }
+        this.http
+          .delete(`http://localhost:8080/employees/${id}`)
+          .subscribe((_) => {
+            this.getTableData();
+            return;
+          });
+      }
+      if (user.id === id && user.role === 'EMPLOYEE') {
         localStorage.removeItem('user');
         this.http
           .delete(`http://localhost:8080/employees/${id}`)
