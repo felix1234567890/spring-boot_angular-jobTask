@@ -67,4 +67,12 @@ export class AppComponent implements OnInit {
     }
     this.actualTime = `${hours}:${minutes}:${seconds}`;
   }
+  createEmployee(): void {
+    if (localStorage.getItem('user')) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user.role !== 'EMPLOYEE') {
+        this.router.navigate(['createEmployee']);
+      }
+    }
+  }
 }

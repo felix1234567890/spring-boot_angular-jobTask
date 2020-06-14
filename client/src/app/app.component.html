@@ -6,7 +6,7 @@
     <span class="spacer"></span>
     <button
       mat-raised-button
-      [routerLink]="'/createEmployee'"
+      (click)="createEmployee()"
       class="nav-button"
       *ngIf="router.url !== '/createEmployee'"
     >
