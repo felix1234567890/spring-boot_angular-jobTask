@@ -1,0 +1,23 @@
+.form-container {
+  width: 600px;
+  margin: 20px auto;
+}
+.form-group {
+  margin-bottom: 5px;
+  width: 100%;
+}
+mat-form-field.mat-form-field {
+  width: inherit;
+}
+
+.spinnerContainer {
+  height: calc(100% - 64px);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkbox {
+  margin-bottom: 15px;
+}

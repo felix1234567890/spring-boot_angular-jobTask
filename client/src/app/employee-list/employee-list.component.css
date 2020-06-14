@@ -1,0 +1,24 @@
+table {
+  width: 80%;
+  margin: 20px auto;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+button[color="primary"],
+button[color="warn"],
+button[color="accent"],
+button {
+  margin-right: 10px;
+}
+.mat-raised-button.mat-success {
+  background-color: green;
+  color: #fff;
+}
+.mat-raised-button.mat-purple {
+  background-color: rgb(103, 58, 183);
+  color: #fff;
+}
