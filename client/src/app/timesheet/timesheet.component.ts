@@ -6,7 +6,7 @@ import {
   FormGroupDirective,
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import * as moment from 'moment';
+import  {endOfDay, startOfDay, startOfMonth} from 'date-fns';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,8 +25,8 @@ interface TimeSheet {
 })
 export class TimesheetComponent implements OnInit {
   timeSheetData: Array<TimeSheet>;
-  public maxDate: any = moment().endOf('day').format();
-  public min = moment().startOf('month').format();
+  public maxDate = endOfDay(new Date())
+  public min = startOfMonth(new Date())
   public hideTime = true;
   public readonly displayedColumns: string[] = [
     'date',
@@ -57,7 +57,7 @@ export class TimesheetComponent implements OnInit {
   }
 
   setMaxDate(event): void {
-    this.maxDate = moment(event.target.value).endOf('day').toDate();
+    this.maxDate = endOfDay(event.target.value)
   }
   ngOnInit(): void {
     this.getTimeSheetData();
@@ -79,10 +79,8 @@ export class TimesheetComponent implements OnInit {
     }
     this.filtered = true;
     this.filterForm.patchValue({
-      filterStart: moment(this.filterForm.value.filterStart)
-        .startOf('day')
-        .format(),
-      filterEnd: moment(this.filterForm.value.filterEnd).endOf('day').format(),
+      filterStart: startOfDay(this.filterForm.value.filterStart),
+      filterEnd: endOfDay(this.filterForm.value.filterEnd)
     });
     const filteredData = this.timeSheetData.filter((timesheet) => {
       if (

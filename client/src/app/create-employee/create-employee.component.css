@@ -6,8 +6,8 @@
   margin-bottom: 5px;
   width: 100%;
 }
-mat-form-field.mat-form-field {
-  width: inherit;
+mat-form-field{
+  width: 300px !important;
 }
 
 .spinnerContainer {

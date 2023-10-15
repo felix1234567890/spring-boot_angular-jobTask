@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { endOfDay, startOfMonth } from 'date-fns';
 
 @Component({
   selector: 'app-log-time',
@@ -14,8 +14,8 @@ export class LogTimeComponent {
   @ViewChild('picker2') picker2: any;
   form: FormGroup;
   employeeId: string;
-  public maxDate: any = moment().endOf('day').format();
-  public min = moment().startOf('month').format();
+  public maxDate: any = endOfDay(new Date())
+  public min = startOfMonth(new Date())
 
   constructor(
     private http: HttpClient,
@@ -33,8 +33,8 @@ export class LogTimeComponent {
       return;
     }
     this.form.patchValue({
-      timeArrived: moment(this.form.value.timeArrived).format(),
-      timeLeft: moment(this.form.value.timeLeft).format(),
+      timeArrived: new Date(this.form.value.timeArrived),
+      timeLeft: new Date(this.form.value.timeLeft)
     });
     this.http
       .post(`http://localhost:8080/timesheets/${this.employeeId}`, {
@@ -50,7 +50,7 @@ export class LogTimeComponent {
       });
   }
   setMaxDate(event): void {
-    this.maxDate = moment(event.target.value).endOf('day').toDate();
+    this.maxDate = endOfDay(event.target.value)
   }
   goBack(): void {
     this.router.navigate(['employees']);

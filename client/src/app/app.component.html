@@ -12,7 +12,7 @@
     >
       Create employee
     </button>
-    <div class="weather">
+    <div class="weather" *ngIf="city && temperature && tempDescription">
       <span>{{ city }} {{ temperature | temp }}</span>
       <span> {{ tempDescription }}</span>
     </div>
